@@ -477,6 +477,9 @@
                 .whatsapp-text text {
                     font-size: 10px;
                 }
+                .cli-input {
+                    font-size: 16px;
+                }
                 .chips button {
                     font-size: 0.8rem;
                     padding: 0.25rem 0.5rem;
@@ -695,6 +698,7 @@
                 var chips = document.getElementById("chips");
                 var isMobile =
                     "ontouchstart" in window || navigator.maxTouchPoints > 0;
+                if (isMobile) input.placeholder = "tape ou clique une commande";
 
                 var commands = {
                     linkedin: {
