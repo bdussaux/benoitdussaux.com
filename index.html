@@ -594,8 +594,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 
   function scrollToBottom() {
-    // Maintient le bas du terminal visible (auto-scroll vers la box d'input)
-    box.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    box.scrollIntoView({ behavior: 'instant', block: 'nearest' });
   }
 
   function disableChips(disabled) {
@@ -627,6 +626,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
     disableChips(true);
     input.value = '';
 
+    var win = null;
+    if (def.url && def.target === '_blank') {
+      win = window.open('', '_blank', 'noopener');
+    }
+
     var delays = [350, 700, 1050];
     def.lines.forEach(function(l, i) {
       setTimeout(function() {
@@ -637,8 +641,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     if (def.url) {
       setTimeout(function() {
-        if (def.target === '_blank') {
-          window.open(def.url, '_blank', 'noopener');
+        if (win) {
+          win.location.href = def.url;
         } else {
           window.location.href = def.url;
         }
