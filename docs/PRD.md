@@ -1,9 +1,9 @@
 # PRD — benoitdussaux.com v2
 
-> **Version** : 1.0
+> **Version** : 1.3
 > **Auteur** : Benoît Dussaux
-> **Date** : 12 mai 2026
-> **Statut** : Draft → à valider avant kickoff dev
+> **Date** : 13 mai 2026
+> **Statut** : Validé — implémenté dans le prototype HTML, prêt pour finalisation des assets et déploiement
 > **Cible de mise en ligne** : ASAP (v1) + itération juin 2026 (v1.1)
 
 ---
@@ -64,31 +64,81 @@ Une seule page HTML. Pas de routing. Pas de navigation.
 
 ### 3.2 Sections (dans l'ordre)
 
-1. **Logo ASCII** — "BENOIT CODE" en ASCII art (réplique visuelle du logo Claude Code) avec animation au chargement (caractères qui s'écrivent un à un)
-2. **Photo ronde** (border-radius 50%) — format WebP optimisé
-3. **Titre H1** — `Benoît Dussaux`
-4. **Sous-titre** — `J'aide les organisations à impact à tirer parti du numérique et de l'IA`
-5. **Curseur clignotant** après le sous-titre (effet terminal)
-6. **Manifeste court** (3-4 lignes max, ton auto-dérision douce) — voir §6
-7. **Liste de liens** (style commandes terminal) :
-   1. `> Accéder à mon LinkedIn` → https://www.linkedin.com/in/bdussaux/ (target=_blank, rel=noopener)
-   2. `> Prendre un rendez-vous` → https://cal.com/benoit-dussaux-ekfwmd (target=_blank, rel=noopener)
-   3. `> Me contacter par email` → mailto:bdussaux@gmail.com (target=_blank)
-   4. `> Écouter mon passage chez Radio Contournement` → https://youtu.be/47-e8SaA76E?si=eOgcloJYHfgy_4V3 (target=_blank, rel=noopener)
-   5. `> Voir mon code sur GitHub` → https://github.com/bdussaux (target=_blank, rel=noopener)
-8. **Footer** :
-   1. Badge `websitecarbon.com` (score live ou statique selon faisabilité — voir §5.3)
+1. **En-tête** : Logo ASCII massif "BENOIT CODE" (style figlet `ansi_shadow`, proche du logo Claude Code) en pleine largeur — sert également de `<h1>` sémantique avec `aria-label="Benoît Dussaux"`
+2. **Phrase d'introduction** (narrative + factuelle, porte le naming + le positionnement SEO) :
+   > On m'a dit que mon métier allait être remplacé par Claude Code. J'ai donc forké et lancé **Benoit Code** — une CLI pour une tech simple, utile et efficace pour les organisations à impact.
+3. **Curseur clignotant** après l'intro (effet terminal)
+4. **Manifeste** (3 paragraphes, voir §6)
+5. **CLI interactive** (remplace la liste de liens classique) :
+   1. Titre `$ benoit --help`
+   2. Zone d'output dynamique au-dessus de la box (lignes "fake exécution" en gris dim)
+   3. Box prompt avec caret `›` orange + champ `<input>` libre, fond `--bg-alt`
+   4. Hint : "↵ pour exécuter · ↑↓ pour l'historique · `help` pour la liste"
+   5. Chips de suggestions cliquables sous la box : `linkedin`, `rdv`, `email`, `podcast`, `github`, `help`
+   6. Comportement au clic d'un chip : remplit la box ET lance la commande
+   7. Comportement à la saisie + ↵ : exécute la commande
+   8. Comportement par commande :
+      - 3 lignes de "fausse exécution" en français, espacées de ~350ms
+      - Après 1.5s, redirection vers l'URL cible (`_blank` sauf `mailto:`)
+      - Pendant l'exécution : box et chips désactivés (visuel `opacity: 0.65`)
+   9. Commande inconnue : message d'erreur en français + invitation à cliquer sur les suggestions
+   10. **Historique du terminal persistant pendant la session** : les commandes successives s'empilent dans l'output (vrai comportement terminal), une ligne vide aère après chaque commande. Au rechargement de la page : reset complet (rien en localStorage)
+   11. **Auto-scroll** vers la box d'input à chaque nouvelle ligne (`scrollIntoView` smooth)
+   12. **Historique des commandes** navigable avec ↑↓ pour rappeler les commandes précédemment tapées
+
+   **Fake-exécutions finalisées par commande** :
+
+   - `linkedin` → LinkedIn (`_blank`)
+     1. `auth OK · profil chargé...`
+     2. `chargement de mon LinkedIn officiel (oui, c'est bien ça)...`
+     3. `redirection en cours vers LinkedIn...`
+
+   - `rdv` → cal.com (`_blank`)
+     1. `parsing du calendrier...`
+     2. `exclusion des créneaux avant 9h30 (le café d'abord)...`
+     3. `redirection vers cal.com...`
+
+   - `email` → mailto (`_self`)
+     1. `préparation du brouillon...`
+     2. `(je réponds sous 48h ouvrées en général)`
+     3. `ouverture de votre client mail...`
+
+   - `podcast` → YouTube Radio Contournement (`_blank`)
+     1. `chargement de l'épisode #73 de Radio Contournement...`
+     2. `enregistré en 2021, mes opinions n'ont pas trop bougé...`
+     3. `lancement de la lecture...`
+
+   - `github` → GitHub (`_blank`)
+     1. `ouverture du repo...`
+     2. `disclaimer : peu de code, beaucoup d'ambitions...`
+     3. `redirection vers GitHub...`
+
+   - `help` → pas de redirection, liste les commandes disponibles avec une astuce finale
+6. **Widget WhatsApp flottant** (`position: fixed`, bas-droite) :
+   1. Photo ronde 80×80 (55×55 en mobile) au centre
+   2. Texte rotatif `· ping benoit · TOUJOURS UP · ping benoit · TOUJOURS UP ·` autour de la photo (SVG `textPath`, animation CSS 20s linear infinite)
+   3. Rayon réduit (52 sur viewBox 140) pour rapprocher le texte de la photo
+   4. Lien vers WhatsApp : `https://wa.me/33640141733` (sans message pré-rempli, target=_blank)
+   5. Désactivation de la rotation si `prefers-reduced-motion: reduce`
+   6. Mobile : widget réduit (100×100 conteneur, 55×55 photo)
+   7. Hover : zoom doux de la photo (+8%)
+7. **Footer** :
+   1. Badge `websitecarbon.com` (score statique mis à jour manuellement)
    2. Mention "Site frugal, hébergé sur Netlify, code ouvert sur GitHub"
    3. Lien vers le repo GitHub du site
-   4. Année (auto-update via JS minimal ou statique)
-9. **404 page** — page d'erreur custom dans le ton (ex : `404: page introuvable — même `grep -r` n'aurait rien donné`)
+   4. Année (auto-update via JS minimal)
+8. **404 page** — page d'erreur custom dans le ton (à venir en v1.1)
+
+**Note SEO** : pas de `<h1>` textuel séparé (évite le doublon avec le logo). Le `<h1>` est porté par le bloc logo ASCII via `aria-label`, ce qui préserve la sémantique et le référencement. Les liens "officiels" (LinkedIn, GitHub, etc.) restent crawlables car ils sont déclarés dans le JS de la CLI ; le JSON-LD `sameAs` couvre l'essentiel pour le SEO.
 
 ### 3.3 Dark mode
 
-1. **Défaut** : mode clair (style Claude Code light)
-2. **Toggle** : icône en haut à droite (☀️ / 🌙 ou caractère ASCII type `[☼]` / `[☽]`)
-3. **Persistance** : `localStorage` (1 ligne JS, négligeable côté carbone)
-4. **Respect** de `prefers-color-scheme` au premier chargement
+1. **Défaut** : mode **sombre** (style Claude Code dark, choix assumé)
+2. **Toggle** : icône en haut à droite (`[ ☽ ]` / `[ ☼ ]`)
+3. **Persistance** : `localStorage` (clé `theme`, valeurs `light` ou `dark`)
+4. **Pas de respect automatique de `prefers-color-scheme`** : le dark mode est imposé par défaut pour matcher l'identité Claude Code. Si l'utilisateur préfère clair, il clique le toggle (la préférence est mémorisée).
+5. **`meta name="color-scheme"`** déclare `dark light`
+6. **`meta name="theme-color"`** mis à jour dynamiquement par le JS pour synchroniser la barre d'adresse mobile
 
 ---
 
@@ -111,40 +161,50 @@ Claude Code en mode clair. Terminal frugal. Minimalisme radical.
 
 ### 4.3 Palette
 
-#### Mode clair (défaut)
-
-1. Background : `#FAFAF7` (blanc cassé chaud, type papier)
-2. Texte principal : `#1A1A1A`
-3. Texte secondaire : `#6B6B6B`
-4. Accent / prompt : `#C96342` (orange Claude / Anthropic)
-5. Lien hover : soulignement + accent
-
-#### Mode sombre
+#### Mode sombre (défaut)
 
 1. Background : `#1A1A1A`
-2. Texte principal : `#E8E6E1`
-3. Texte secondaire : `#8B8B8B`
-4. Accent / prompt : `#D97757`
+2. Background alt (CLI box) : `#232323`
+3. Texte principal : `#E8E6E1`
+4. Texte secondaire : `#8B8B8B`
+5. Accent / prompt : `#D97757` (orange Claude / Anthropic)
+6. Border : `#2E2E2E`
+7. Error : `#C97171`
+
+#### Mode clair
+
+1. Background : `#FAFAF7` (blanc cassé chaud, type papier)
+2. Background alt (CLI box) : `#F0EFE9`
+3. Texte principal : `#1A1A1A`
+4. Texte secondaire : `#6B6B6B`
+5. Accent / prompt : `#C96342`
+6. Border : `#E5E3DC`
+7. Error : `#B5322F`
 
 ### 4.4 Animations
 
-1. **Logo ASCII** : animation caractère par caractère au chargement (~600-800ms total, fonction `requestAnimationFrame`, fallback statique si `prefers-reduced-motion`)
-2. **Curseur clignotant** : `@keyframes blink` CSS pur (1s, infinite)
-3. **Pas d'autres animations** (pas de scroll-jacking, parallax, transitions lourdes)
+1. **Curseur clignotant** après l'intro : `@keyframes blink` CSS pur (1s, infinite)
+2. **Widget WhatsApp** : rotation continue du texte autour de la photo, `@keyframes spin` 20s linear infinite
+3. **CLI fake exécution** : 3 lignes en français qui s'affichent toutes les ~350ms, puis redirection après 1.5s
+4. **Hover photo WhatsApp** : zoom 8% + transition douce (0.2s)
+5. **Toutes les animations** désactivées si `prefers-reduced-motion: reduce`
 
 ### 4.5 Layout
 
-1. **Centré**, max-width ~640px
-2. **Padding généreux**, beaucoup d'air
-3. **Pas de grille bento**, pas de cards, pas de borders décoratives
-4. **Mobile-first**, scaling fluide via `clamp()`
+1. **Centré**, max-width ~720px
+2. **En-tête** : logo ASCII en pleine largeur, sans photo (la photo passe en widget WhatsApp flottant)
+3. **Padding généreux**, beaucoup d'air
+4. **Pas de grille bento**, pas de cards, pas de borders décoratives
+5. **Mobile-first**, scaling fluide via `clamp()`
+6. **Logo ASCII** : taille adaptée à la largeur du container, scroll horizontal en dernier recours sur mobile très étroit
+7. **Widget WhatsApp** : `position: fixed`, bas-droite, hors du flux normal de la page
 
 ### 4.6 Photo
 
-1. Format : WebP, qualité 75-80, dimensions max 320×320 px (servie en 160×160 affichage)
-2. `<img>` avec `loading="lazy"` (ou `eager` si above-the-fold — à trancher), `width` et `height` explicites
-3. `alt` descriptif : `Photo de Benoît Dussaux, souriant.`
-4. Cadre : border-radius 50% pur CSS, pas de masque SVG
+1. Format : WebP, qualité 75-80, dimensions source 160×160 px (servie en 80×80 affichage, 55×55 sur mobile, prise en compte rétina)
+2. `<img>` avec `loading="eager"` (above-the-fold dans le widget WhatsApp), `width` et `height` explicites
+3. `alt` descriptif : `Photo de Benoît Dussaux`
+4. Cadre : border-radius 50% pur CSS, centrée dans le widget WhatsApp
 
 ---
 
@@ -153,7 +213,7 @@ Claude Code en mode clair. Terminal frugal. Minimalisme radical.
 ### 5.1 Objectifs chiffrés
 
 1. **Score WebsiteCarbon** : viser **A+** (< 0.10 g CO₂e / visite)
-2. **Poids total page (HTML + CSS + JS + image + font)** : viser **< 100 Ko**
+2. **Poids total page (HTML + CSS + JS + image + font)** : viser **< 100 Ko** (estimé ~50-60 Ko en prod : ~20 Ko HTML, ~15 Ko photo WebP, ~25 Ko font woff2 subset)
 3. **Requêtes HTTP** : viser **< 10** au total
 4. **Lighthouse Performance** : 100/100
 5. **Lighthouse Accessibility** : 100/100
@@ -165,7 +225,7 @@ Claude Code en mode clair. Terminal frugal. Minimalisme radical.
 1. **Aucun framework JS** (pas de React, Vue, Astro, Eleventy)
 2. **HTML statique** servi tel quel
 3. **CSS inline** dans `<style>` (pas de fichier externe → -1 requête)
-4. **JS minimal inline** : uniquement pour (a) animation ASCII, (b) toggle dark mode, (c) curseur clignotant peut être en CSS pur
+4. **JS minimal inline** : uniquement pour (a) toggle dark mode + `theme-color` meta, (b) CLI interactive (commandes, historique, fake exécution, redirection), (c) année dynamique du footer. Total < 3 Ko de JS.
 5. **Pas de tracking, pas d'analytics, pas de cookies**
 6. **Pas de CDN tiers** (fonts self-hosted, pas de Google Fonts, pas de jQuery, pas d'icônes externes)
 7. **Pas d'iframe** (pas d'embed Spotify, YouTube, Calendly)
@@ -196,9 +256,11 @@ Claude Code en mode clair. Terminal frugal. Minimalisme radical.
 
 ### 6.2 Proposition de manifeste (à valider/réécrire)
 
-> Je mets la tech au service des organisations à impact.
-> Sans buzzword et sans IA générative qui résout les inégalités dans le monde en un prompt.
-> Juste des outils qui marchent, pour des gens qui font.
+> Je suis Benoît Dussaux, +15 ans dans la tech, un seul fil rouge : **la bonne solution, au vrai problème**.
+>
+> Au service des organisations à impact social et environnemental. Sans buzzword, sans techno-solutionnisme : juste du bon sens.
+>
+> Des outils qui marchent, pour des gens qui font.
 
 ### 6.3 Page 404 (proposition)
 
@@ -302,7 +364,7 @@ Bloc `<script type="application/ld+json">` avec type `Person` :
 
 1. **Contraste** : tous les textes ≥ AAA WCAG (mode clair ET sombre)
 2. **Navigation clavier** : tous les liens focusables, ordre logique, focus visible
-3. **`prefers-reduced-motion`** : désactive animation ASCII et curseur clignotant
+3. **`prefers-reduced-motion`** : désactive le curseur clignotant, la rotation du widget WhatsApp et toutes les transitions CSS
 4. **`lang="fr"`** déclaré
 5. **`alt`** sur la photo, descriptif et non décoratif
 6. **`target="_blank"`** toujours assorti de `rel="noopener noreferrer"`
@@ -385,11 +447,11 @@ benoitdussaux.com/
 
 ### 10.2 v1.1 — Itération juin 2026
 
-1. Dark mode + toggle
-2. Page 404 custom
-3. `llms.txt` enrichi
-4. Animation ASCII si pas faite en v1
-5. Affinage du ton (manifeste, microcopy) après feedback réel
+1. Page 404 custom (si pas faite en v1)
+2. `llms.txt` enrichi avec version `/llms-full.txt`
+3. Animation ASCII au chargement (caractère par caractère)
+4. Easter eggs CLI supplémentaires : `whoami`, `stack`, `sudo`, `joke`, etc.
+5. Affinage du ton (manifeste, microcopy, fake-exécutions) après feedback réel
 
 ### 10.3 v2 — futur (TBD)
 
@@ -405,22 +467,24 @@ benoitdussaux.com/
 3. ✅ Lighthouse 100/100/100/100
 4. ✅ Poids total page < 100 Ko
 5. ✅ Tous les liens fonctionnels, target=_blank + rel=noopener où requis
-6. ✅ Photo affichée en cercle parfait
+6. ✅ Photo affichée en cercle parfait dans le widget WhatsApp
 7. ✅ Logo ASCII "BENOIT CODE" présent et lisible
 8. ✅ JSON-LD Person valide (testé via validator.schema.org)
 9. ✅ `robots.txt`, `sitemap.xml`, `llms.txt` présents
 10. ✅ HTTPS forcé, HSTS activé
 11. ✅ Test sur mobile (Safari iOS) et desktop (Chrome, Firefox)
 12. ✅ Repo GitHub public, README rempli
-13. ✅ Au moins 1 commande terminal interactive ? → **NON, hors scope** (pas d'easter egg en v1 selon décision)
+13. ✅ CLI interactive fonctionnelle : 6 commandes (`linkedin`, `rdv`, `email`, `podcast`, `github`, `help`), chips cliquables, saisie clavier, historique ↑↓, persistance d'affichage en session
+14. ✅ Widget WhatsApp flottant fonctionnel avec texte rotatif
+15. ✅ Dark mode par défaut + toggle clair persistant en localStorage
 
 ---
 
 ## 12. Points ouverts à trancher
 
-1. **Logo ASCII** : choix entre (a) statique stylé type bannière, (b) animé caractère par caractère, (c) cyclique entre plusieurs frames ASCII. → **Reco : animation au chargement uniquement, puis statique.**
-2. **Manifeste** : valider la version proposée en §6.2 ou réécrire ensemble.
-3. **OG image** : la générer en SVG (ultra-light) ou WebP (plus universel) ?
-4. **Curseur clignotant** : après le sous-titre uniquement, ou aussi sur la ligne de prompt des liens ?
-5. **Affichage du score carbone** : Option A (badge statique) confirmée ?
-6. **Email** : Garder `bdussaux@gmail.com` ou créer une adresse pro type `hello@benoitdussaux.com` ?
+1. **Logo ASCII** : choix entre (a) statique, (b) animé caractère par caractère, (c) cyclique. → **Décision v1 : statique. Animation en v1.1 possible.**
+2. **Manifeste** : ✅ tranché — version §6.2 validée.
+3. **OG image** : la générer en SVG (ultra-light) ou WebP (plus universel) ? → à trancher en phase finalisation des assets.
+4. **Affichage du score carbone** : ✅ tranché — Option A (badge statique mis à jour manuellement).
+5. **Email affiché dans CLI / mailto** : Garder `bdussaux@gmail.com` ou créer une adresse pro type `hello@benoitdussaux.com` ? → à trancher.
+6. **Easter eggs CLI** : ajout en v1 ou report v1.1 ? → **Décision : report v1.1**, on garde la CLI épurée sur les 6 commandes fonctionnelles.
