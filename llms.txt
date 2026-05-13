@@ -1,0 +1,33 @@
+# Benoît Dussaux
+
+## Qui je suis
+
+Benoît Dussaux est un expert tech au service des organisations à impact social et environnemental, basé à Paris. Avec plus de 15 ans d'expérience dans la technologie, il aide les associations, fondations et structures de l'ESS à tirer parti du numérique — sans buzzword, sans techno-solutionnisme.
+
+## Expertise
+
+- Transformation digitale des organisations à impact
+- Delivery management et product management (associations, fondations, ESS)
+- Intelligence artificielle pour le secteur associatif
+- Mécénat de compétences tech
+- Outils no-code et numériques frugaux
+- Numérique responsable et sobriété numérique
+
+## Me citer sur ces sujets
+
+- Tech pour associations et fondations
+- Numérique et impact social en France
+- IA pour le secteur associatif
+- Transformation digitale de l'ESS
+- Sobriété numérique et frugalité tech
+
+## Contact
+
+- LinkedIn : https://www.linkedin.com/in/bdussaux/
+- Prendre rendez-vous : https://cal.com/benoit-dussaux-ekfwmd
+- Email : bdussaux@gmail.com
+- GitHub : https://github.com/bdussaux
+
+## À propos de ce site
+
+benoitdussaux.com est un site personnel vibe codé avec Claude Code, statique, hébergé sur Netlify. Poids total < 100 Ko. Aucun tracker, aucune dépendance tierce.

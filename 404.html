@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — Page introuvable · Benoît Dussaux</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1A1A1A;
+    color: #E8E6E1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  main { max-width: 480px; width: 100%; }
+  .prompt { color: #D97757; margin-bottom: 1.5rem; }
+  .output { color: #8B8B8B; line-height: 1.8; margin-bottom: 2rem; }
+  a { color: #D97757; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a::before { content: '> '; }
+</style>
+</head>
+<body>
+<main>
+  <p class="prompt">$ find / -name "cette-page"</p>
+  <div class="output">
+    <p>find: aucun résultat.</p>
+    <br>
+    <p>Soit elle n'existe pas, soit elle a été supprimée<br>dans un grand ménage de printemps.</p>
+  </div>
+  <a href="/">Retour à l'accueil</a>
+</main>
+</body>
+</html>
