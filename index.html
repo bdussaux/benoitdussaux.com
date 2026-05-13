@@ -594,7 +594,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 
   function scrollToBottom() {
-    box.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+    // Maintient le bas du terminal visible (auto-scroll vers la box d'input)
+    box.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
 
   function disableChips(disabled) {
@@ -626,11 +627,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
     disableChips(true);
     input.value = '';
 
-    var win = null;
-    if (def.url && def.target === '_blank') {
-      win = window.open('', '_blank', 'noopener');
-    }
-
     var delays = [350, 700, 1050];
     def.lines.forEach(function(l, i) {
       setTimeout(function() {
@@ -641,8 +637,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     if (def.url) {
       setTimeout(function() {
-        if (win) {
-          win.location.href = def.url;
+        if (def.target === '_blank') {
+          window.open(def.url, '_blank', 'noopener');
         } else {
           window.location.href = def.url;
         }
