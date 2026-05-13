@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="130" cy="384" r="50"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#1A1A1A"/>
+
+  <!-- ASCII Logo BENOIT CODE -->
+  <text font-family="'JetBrains Mono', 'Courier New', Consolas, monospace" font-size="16" fill="#D97757" xml:space="preserve">
+    <tspan x="80" y="65">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2588;&#x2557;   &#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;</tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;  &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2550;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2551;&#x255A;&#x2550;&#x2550;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x255D;</tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2554;&#x255D;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;  &#x2588;&#x2588;&#x2554;&#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;   </tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x255D;  &#x2588;&#x2588;&#x2551;&#x255A;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;   </tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2554;&#x255D;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2551; &#x255A;&#x2588;&#x2588;&#x2588;&#x2588;&#x2551;&#x255A;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2554;&#x255D;&#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;   </tspan>
+    <tspan x="80" dy="20">&#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D; &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D;&#x255A;&#x2550;&#x255D;  &#x255A;&#x2550;&#x2550;&#x2550;&#x255D; &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D; &#x255A;&#x2550;&#x255D;   &#x255A;&#x2550;&#x255D;   </tspan>
+    <tspan x="80" dy="24"> &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;</tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2550;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2588;&#x2588;&#x2557;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D;</tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2551;     &#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2551;  &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;  </tspan>
+    <tspan x="80" dy="20">&#x2588;&#x2588;&#x2551;     &#x2588;&#x2588;&#x2551;   &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2551;  &#x2588;&#x2588;&#x2551;&#x2588;&#x2588;&#x2554;&#x2550;&#x2550;&#x255D;  </tspan>
+    <tspan x="80" dy="20">&#x255A;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;&#x255A;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2554;&#x255D;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2554;&#x255D;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2557;</tspan>
+    <tspan x="80" dy="20"> &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D; &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D; &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D; &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D;</tspan>
+  </text>
+
+  <!-- Divider -->
+  <line x1="80" y1="308" x2="1120" y2="308" stroke="#2E2E2E" stroke-width="1"/>
+
+  <!-- Photo (cercle) -->
+  <image href="data:image/webp;base64,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"
+    x="80" y="334" width="100" height="100"
+    clip-path="url(#circle-clip)"
+    preserveAspectRatio="xMidYMid slice"/>
+
+  <!-- Tagline -->
+  <text font-family="'JetBrains Mono', 'Courier New', Consolas, monospace" font-size="34">
+    <tspan x="200" y="372" fill="#D97757">›</tspan><tspan fill="#E8E6E1"> J&apos;aide les organisations à impact</tspan>
+  </text>
+  <text font-family="'JetBrains Mono', 'Courier New', Consolas, monospace" font-size="34" fill="#E8E6E1">
+    <tspan x="200" y="422">  à tirer parti du numérique et de l&apos;IA</tspan>
+  </text>
+
+  <!-- URL -->
+  <text font-family="'JetBrains Mono', 'Courier New', Consolas, monospace" font-size="20" fill="#8B8B8B" x="80" y="582">benoitdussaux.com</text>
+
+</svg>
