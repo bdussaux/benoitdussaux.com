@@ -355,6 +355,12 @@
     width: 100%;
   }
   footer p { margin-bottom: 0.4rem; }
+  .cli-redirect-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   footer a {
     color: var(--fg-dim);
     text-decoration: underline;
@@ -513,6 +519,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   var output = document.getElementById('cliOutput');
   var box = document.getElementById('cliBox');
   var chips = document.getElementById('chips');
+  var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   var commands = {
     linkedin: {
@@ -594,8 +601,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 
   function scrollToBottom() {
-    // Maintient le bas du terminal visible (auto-scroll vers la box d'input)
-    box.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    if (!isMobile) box.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
 
   function disableChips(disabled) {
@@ -637,7 +643,17 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
     if (def.url) {
       setTimeout(function() {
-        if (def.target === '_blank') {
+        if (isMobile) {
+          var a = document.createElement('a');
+          a.href = def.url;
+          a.textContent = '→ appuie ici pour continuer ↗';
+          a.className = 'cli-redirect-link';
+          if (def.target === '_blank') { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+          var line = document.createElement('div');
+          line.className = 'line';
+          line.appendChild(a);
+          output.appendChild(line);
+        } else if (def.target === '_blank') {
           window.open(def.url, '_blank', 'noopener');
         } else {
           window.location.href = def.url;
