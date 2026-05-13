@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="color-scheme" content="dark light" />
-        <meta name="theme-color" content="#1A1A1A" />
+        <meta name="theme-color" content="#FAFAF7" />
         <title>Benoît Dussaux — La tech pour les organisations à impact</title>
         <meta
             name="description"
@@ -30,6 +30,16 @@
             rel="icon"
             href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='14' font-size='14' font-family='monospace'%3E%3E%3C/text%3E%3C/svg%3E"
         />
+
+        <script>
+            (function () {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', t === 'light' ? '#FAFAF7' : '#1A1A1A');
+            })();
+        </script>
 
         <script type="application/ld+json">
             {
@@ -607,7 +617,7 @@
                 </defs>
                 <text>
                     <textPath href="#circlePath" startOffset="0">
-                        · ENVOYER UN WHATSAPP · ENVOYER UN WHATSAPP ·
+                        · ENVOYER UN WHATSAPP  ·  ENVOYER UN WHATSAPP
                     </textPath>
                 </text>
             </svg>
